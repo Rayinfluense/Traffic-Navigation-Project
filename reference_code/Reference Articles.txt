@@ -2,3 +2,9 @@ Efterhandsgranskning av trängselskattens påverkan på trafik och resetider i S
 uppskattad och uppmätt data. Relevant som "proof of concept" och inspiration till att skapa en bättre modell.
 
 https://doi.org/10.1016/j.tranpol.2008.12.004
+
+-----------
+
+Liknande artikel men som diskuterar mer kostnader och jämför med benefits
+
+https://doi.org/10.1016/j.tra.2008.11.014
