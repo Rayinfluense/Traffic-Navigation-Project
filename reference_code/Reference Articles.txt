@@ -25,3 +25,9 @@ http://dx.doi.org/10.2312/LocalChapterEvents/TPCG/TPCG10/091-098
 -----------
 Conflict-minimising traffic patterns: A graph-theoretic approach to efficient traffic circulation in urban areas
 https://doi.org/10.1016/0191-2607(89)90072-1
+
+
+-----------
+
+
+https://dl.acm.org/doi/pdf/10.1145/1460299.1460318
