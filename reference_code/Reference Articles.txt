@@ -1,0 +1,4 @@
+Efterhandsgranskning av trängselskattens påverkan på trafik och resetider i Stockholm runt 2007. Politisk bakgrund samt 
+uppskattad och uppmätt data. Relevant som "proof of concept" och inspiration till att skapa en bättre modell.
+
+https://doi.org/10.1016/j.tranpol.2008.12.004
