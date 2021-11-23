@@ -14,3 +14,9 @@ https://doi.org/10.1016/j.tra.2008.11.014
 Bara skummat, men kan vara bra att se vad för modeller som används för modellering av congestion:
 
 https://doi.org/10.1016/S0191-2615(99)00047-8
+
+
+-----------
+Real-time Traffic simulation with Cellular Automata
+
+http://dx.doi.org/10.2312/LocalChapterEvents/TPCG/TPCG10/091-098
