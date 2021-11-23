@@ -8,3 +8,9 @@ https://doi.org/10.1016/j.tranpol.2008.12.004
 Liknande artikel men som diskuterar mer kostnader och jämför med benefits
 
 https://doi.org/10.1016/j.tra.2008.11.014
+
+-----------
+
+Bara skummat, men kan vara bra att se vad för modeller som används för modellering av congestion:
+
+https://doi.org/10.1016/S0191-2615(99)00047-8
