@@ -20,3 +20,8 @@ https://doi.org/10.1016/S0191-2615(99)00047-8
 Real-time Traffic simulation with Cellular Automata
 
 http://dx.doi.org/10.2312/LocalChapterEvents/TPCG/TPCG10/091-098
+
+
+-----------
+Conflict-minimising traffic patterns: A graph-theoretic approach to efficient traffic circulation in urban areas
+https://doi.org/10.1016/0191-2607(89)90072-1
