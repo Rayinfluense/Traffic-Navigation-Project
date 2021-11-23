@@ -28,16 +28,11 @@ https://doi.org/10.1016/0191-2607(89)90072-1
 
 
 -----------
-
+Lite path-planning, inte så mycket med grafsökning men det finns säkret nyttig information att hämmta när vi kommer till sökalgoritmen.
 
 https://dl.acm.org/doi/pdf/10.1145/1460299.1460318
 
-
-
 -----------
-Traffic optimization in transport networks based on local routing
+Denna har med sig nyckelordet "graf", men egentligen är denna också lite som förra. Intressant läsning men kanske inte den mest relevana artikeln i listan.
 
-https://arxiv.org/pdf/0901.1078.pdf
-
-
-
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1389835
