@@ -23,7 +23,7 @@ function path = GetCarPath(car, awarenessType, nodeList, liveMap, edgeMatrix, gl
     for carIndex = 1 : 1
         eventQueue = globalEventQueue.getCopy();
         notebook(car.spawnPoint,EXPLORED) = 1;
-        eventQueue.insert([0 EXPLORE_NODE car.spawnPoint]);
+        eventQueue.insert([car.spawnTime EXPLORE_NODE car.spawnPoint]);
     
         while eventQueue.size() > 0 
             event = eventQueue.remove();
@@ -69,7 +69,9 @@ function path = GetCarPath(car, awarenessType, nodeList, liveMap, edgeMatrix, gl
                         if ~notebook(head,EXPLORED)
                             timeToGetThere = tCarsMind + EstimateTravelTime(currentNode,head,awarenessType,liveMap,liveMapInCarsHead,edgeMatrix);
                             eventQueue.insert([timeToGetThere EXPLORE_NODE head])
-                            notebook(head,TIME:PREVIOUS_NODE) = [timeToGetThere currentNode]; % To enable backpropagation when goal found.
+                            if notebook(head,TIME) > timeToGetThere || notebook(head,TIME) == -1 % If we found a shorter path to here or node unexplored.
+                                notebook(head,TIME:PREVIOUS_NODE) = [timeToGetThere currentNode]; % To enable backpropagation when goal found.
+                            end 
                         end
                     end
                     notebook(currentNode,EXPLORED) = 1; % Mark node as explored
