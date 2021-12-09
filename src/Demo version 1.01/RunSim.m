@@ -7,15 +7,15 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
     avgTravelTime = 0;
     spawnTime = 0;
     if awarenessType == 0
-        awarenessTypeStr = "Shortest distance only. ";
+        awarenessTypeStr = "Best travel time for self, ignore traffic ";
     elseif awarenessType == 1
-        awarenessTypeStr = "Shortest travel time for self. ";
+        awarenessTypeStr = "Best travel time for self, account for traffic. ";
     elseif awarenessType == 2
-        awarenessTypeStr = "Shortest collective travel time. ";
+        awarenessTypeStr = "Best collective travel time. ";
     end
     while ~isempty(individuals)
         spawnTime = spawnTime + 1;
-        spawnRate = spawnFunction(spawnTime);
+        spaw<nRate = spawnFunction(spawnTime);
         spawnRate = floor(spawnRate) + (rand < (spawnRate-floor(spawnRate)));
         for i = 1:spawnRate
             [individuals{end+1},liveMap] = SpawnSingle(A, awarenessType, nodeList, globalEventQueue, citySize, liveMap, spawnTime);
