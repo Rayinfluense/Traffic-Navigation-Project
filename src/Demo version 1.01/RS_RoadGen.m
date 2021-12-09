@@ -251,7 +251,7 @@ for node=1:nNodes
 end
 
 AdjMat = AdjMat - diag(diag(AdjMat));
-AdjMat = ceil(AdjMat.*5);
+AdjMat = ceil(AdjMat.*4);
 CapMat = CapMat - diag(diag(CapMat));
 G = graph(AdjMat);
 capG = graph(CapMat);
