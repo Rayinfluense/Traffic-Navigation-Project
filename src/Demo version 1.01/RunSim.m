@@ -15,7 +15,7 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
     end
     while ~isempty(individuals)
         spawnTime = spawnTime + 1;
-        spaw<nRate = spawnFunction(spawnTime);
+        spawnRate = spawnFunction(spawnTime);
         spawnRate = floor(spawnRate) + (rand < (spawnRate-floor(spawnRate)));
         for i = 1:spawnRate
             [individuals{end+1},liveMap] = SpawnSingle(A, awarenessType, nodeList, globalEventQueue, citySize, liveMap, spawnTime);
