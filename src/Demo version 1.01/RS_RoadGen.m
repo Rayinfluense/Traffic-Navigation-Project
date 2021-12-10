@@ -258,6 +258,6 @@ capG = graph(CapMat);
 %figure;
 LW = capG.Edges.Weight;
 
-plot(G,'XData',xny(:,1),'YData',xny(:,2),'LineWidth',LW,'Edgecolor','black','Nodelabel',{},'Marker','none')
+%plot(G,'XData',xny(:,1),'YData',xny(:,2),'LineWidth',LW,'Edgecolor','black','Nodelabel',{},'Marker','none')
 
 end
