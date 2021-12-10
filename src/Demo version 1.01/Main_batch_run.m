@@ -2,9 +2,12 @@ clear all
 clc
 avgTravelTimeMultRuns = zeros(1,3); %An avg for each awarenessType.
 seedVec = 1:3;
-citySizeVec = 5:2:19;
+citySizeVec = 5:2:9;
+progress = 0;
 for seed = seedVec
     for cityLength = citySizeVec
+        progress = progress + 1;
+        disp("Progress: " + num2str(progress/(length(seedVec)*length(citySizeVec))))
         parfor awarenessType = 0:2
             close all
             rng('default');
