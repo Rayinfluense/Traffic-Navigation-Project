@@ -87,6 +87,12 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
         end
     end
     
+    if ~isempty(individuals) > 0
+        if isnan(xPlotVecRed)
+            disp("Cars left but none moving. Simulation stuck??")
+        end
+    end
+    
     plot(xPlotVecBlack,yPlotVecBlack,'o','Color',[0.8,0,0],'MarkerSize',3)
     hold on
     plot(xPlotVecRed,yPlotVecRed,'o','Color',[0,0.5,0],'MarkerSize',3)

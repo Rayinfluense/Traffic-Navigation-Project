@@ -159,7 +159,6 @@ end
 
 axis([-2 2 -2 2]);
 
-clc;
 ln = length(occupiedNodes);
 nodeCoords = zeros(ln,ln,2);
 
