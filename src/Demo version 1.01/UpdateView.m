@@ -87,9 +87,9 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
         end
     end
     
-    plot(xPlotVecBlack,yPlotVecBlack,'o','Color','black','MarkerSize',3)
+    plot(xPlotVecBlack,yPlotVecBlack,'o','Color',[0.8,0,0],'MarkerSize',3)
     hold on
-    plot(xPlotVecRed,yPlotVecRed,'o','Color','red','MarkerSize',3)
+    plot(xPlotVecRed,yPlotVecRed,'o','Color',[0,0.5,0],'MarkerSize',3)
     title(num2str(length(individuals)) + " cars on the road. " + awarenessTypeStr)
     drawnow
     frame = getframe(gcf);
