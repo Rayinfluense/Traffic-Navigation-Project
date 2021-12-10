@@ -1,4 +1,4 @@
-function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
+function congestionRatio = UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr,spawnTime, prevCongest)
     
     %INTERPOLATE!!!!
     individualsInterpolated = individuals;
@@ -11,10 +11,12 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
             end
             individualsInterpolated{i} = individual;
         end
-        UpdateView(individualsInterpolated,A,v,0,awarenessTypeStr)
+        UpdateView(individualsInterpolated,A,v,0,awarenessTypeStr,-1);
     end
 
-    clf
+    %clf
+    sp1 = subplot(2,1,1);
+    cla(sp1);
     adjMat = A(:,:,1);
     capacityMat = A(:,:,2);
     G = graph(adjMat(:,:,1));
@@ -29,6 +31,7 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
     yPlotVecBlack = xPlotVecBlack;
     xPlotVecRed = xPlotVecBlack;
     yPlotVecRed = xPlotVecBlack;
+    congestionCount = 0;
     for i = 1:length(individuals)
         %The order here should be based on queue, so that cars in front of
         %the list are the first to get on the next road.
@@ -39,7 +42,7 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
         queueTime = individual.queueTime;
         identifier = individual.identifier;
         tol = 0.002;
-        laneWidth = 0.04;
+        laneWidth = 0.05;
         if routeStep + 1 <= length(route)
             fromNode = route(routeStep);
             toNode = route(routeStep + 1);
@@ -73,6 +76,7 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
                 yPlotVecBlack(i) = point(2);
                 xPlotVecRed(i) = NaN;
                 yPlotVecRed(i) = NaN;
+                congestionCount = congestionCount + 1;
             else
                 xPlotVecRed(i) = point(1);
                 yPlotVecRed(i) = point(2);
@@ -93,10 +97,22 @@ function UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr)
         end
     end
     
-    plot(xPlotVecBlack,yPlotVecBlack,'o','Color',[0.8,0,0],'MarkerSize',3)
+    plot(xPlotVecBlack,yPlotVecBlack,'o','Color',[0.8,0,0],'MarkerSize',2)
     hold on
-    plot(xPlotVecRed,yPlotVecRed,'o','Color',[0,0.5,0],'MarkerSize',3)
+    plot(xPlotVecRed,yPlotVecRed,'o','Color',[0,0.5,0],'MarkerSize',2)
     title(num2str(length(individuals)) + " cars on the road. " + awarenessTypeStr)
+    
+    congestionRatio = congestionCount/length(individuals);
+    if spawnTime ~= -1
+        subplot(2,1,2)
+        plot([spawnTime-1, spawnTime],[prevCongest, congestionRatio],'Color',[0,0,1])
+        title("Congestion")
+        xlabel('Time step')
+        ylabel('Portion of cars stuck in traffic')
+        hold on
+        axis([1,max(spawnTime+20,50),0,1])
+    end
+    
     drawnow
     frame = getframe(gcf);
     writeVideo(v,frame)

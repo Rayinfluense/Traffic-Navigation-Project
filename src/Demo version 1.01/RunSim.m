@@ -1,4 +1,5 @@
 function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,nodeList,globalEventQueue,citySize,liveMap,spawnFunction)
+    prevCongest = 0;
     %Could maybe make this parallell? Otherwise, I think it might be enough
     %to make the pathfinding parallell if it will be using this function.
     adjMat = A(:,:,1);
@@ -131,9 +132,9 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
         elseif graphicDetail == 0
             UpdateViewFast(individuals,A,v);
         elseif graphicDetail == 1
-            UpdateView(individuals,A,v,0,awarenessTypeStr);
+            prevCongest = UpdateView(individuals,A,v,0,awarenessTypeStr,spawnTime, prevCongest);
         elseif graphicDetail > 1
-            UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr);
+            prevCongest = UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr,spawnTime, prevCongest);
         end
     end
     avgTravelTime = avgTravelTime / nCarsTraveled;
