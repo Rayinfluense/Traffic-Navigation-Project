@@ -77,8 +77,8 @@ occupiedNodes = newOccupiedNodes;
 %%%%%%%%%%%%%%%%%%%%%% Generates more large roads (highways)
 for q = 1:2
 
-X1 = randi(gridSize);
-Y1 = randi(gridSize);
+X1 = 1 + randi(gridSize - 2);
+Y1 = 1 + randi(gridSize - 2);
 x2 = X(X1, Y1);
 y2 = Y(X1, Y1);
 
@@ -121,8 +121,8 @@ end
 %%%%%%%%%%%%%%%%%%%%%% Generates many small roads (streets)
 for q = 1:(38*gridSize)
 
-X1 = randi(gridSize);
-Y1 = randi(gridSize);
+X1 = 1 + randi(gridSize - 2);
+Y1 = 1 + randi(gridSize - 2);
 x3 = X(X1, Y1);
 y3 = Y(X1, Y1);
 
