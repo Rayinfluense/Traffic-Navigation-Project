@@ -1,7 +1,7 @@
 clear all
 clc
-seedVec = 1:2;
-citySizeVec = [7,13,15];
+seedVec = 1:1;
+citySizeVec = [7];
 avgTravelTimeMultRuns = zeros(1,length(citySizeVec)*3); %An avg for each awarenessType.
 progress = 0;
 for seed = seedVec        
@@ -60,7 +60,7 @@ avgTravelTimeMultRuns = avgTravelTimeMultRuns / length(seedVec);
 
 avgTravelTimeMultRunsMat = zeros(length(citySizeVec),3);
 for i = 1:length(avgTravelTimeMultRuns)
-    citySizeCount = floor(i/3);
+    citySizeCount = ceil(i/3);
     awarenessType = mod(i-1,3);
     avgTravelTimeMultRunsMat(citySizeCount,awarenessType+1) = avgTravelTimeMultRuns(i);
 end
