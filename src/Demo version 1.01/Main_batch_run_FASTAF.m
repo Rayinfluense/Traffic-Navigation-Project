@@ -8,7 +8,7 @@ for seed = seedVec
     progress = progress + 1;
     disp("Progress: " + num2str(progress/(length(seedVec)*length(citySizeVec))))
     parfor i = 1:length(citySizeVec)*3
-        citySizeCount = floor(i/3);
+        citySizeCount = ceil(i/3);
         awarenessType = mod(i-1,3);
         cityLength = citySizeVec(citySizeCount);
         %close all
