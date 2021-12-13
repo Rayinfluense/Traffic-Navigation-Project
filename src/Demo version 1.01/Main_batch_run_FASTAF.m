@@ -1,7 +1,7 @@
 clear all
 clc
-seedVec = 1:1;
-citySizeVec = [7];
+seedVec = 1:2;
+citySizeVec = [7,13,15];
 avgTravelTimeMultRuns = zeros(1,length(citySizeVec)*3); %An avg for each awarenessType.
 progress = 0;
 for seed = seedVec        
