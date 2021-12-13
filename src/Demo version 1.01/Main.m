@@ -8,10 +8,10 @@ rng(5);
 %---------------------------------------
 %Graphic detail = 3 or 15 is recommended.
 graphicDetail = 15; %-1 is no graphics, 0 Is simple mode, 1 is advanced printout, 2 + is advanced printout with interpolation for graphicDetail interpolation steps.
-set(gcf, 'Position', [50,50,1600,900])
-citySize = 19; %MUST BE ODD APPARENTLY
-nIndividuals = 650;
-spawnFunction = @(t) 18*exp(-t/20);
+set(gcf, 'Position', [0,50,640,1080])
+citySize = 13; %MUST BE ODD APPARENTLY
+nIndividuals = round((citySize^2)*(4+1*rand));
+spawnFunction = @(t) (citySize)*(rand/4+1.5)*exp(-t/25);
 awarenessType = 0; %I'm guessing this will be set once for the entire simulation.
 %---------------------------------------
 
