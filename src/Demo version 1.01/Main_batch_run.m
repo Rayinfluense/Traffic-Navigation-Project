@@ -1,15 +1,17 @@
 clear all
 clc
 seedVec = 1:2;
-citySizeVec = [7,13,15];
+citySizeVec = [7,13,17];
 avgTravelTimeMultRuns = zeros(length(citySizeVec),3); %An avg for each awarenessType.
+seedLength = length(seedVec);
+normalizeMat = ones(length(citySizeVec),3)*seedLength;
 progress = 0;
 for seed = seedVec
     for citySizeCount = 1:length(citySizeVec)
         cityLength = citySizeVec(citySizeCount);
         progress = progress + 1;
         disp("Progress: " + num2str(progress/(length(seedVec)*length(citySizeVec))))
-        parfor awarenessType = 0:2
+        for awarenessType = 0:2
             %close all
             rng('default');
             rng(seed);
@@ -19,8 +21,8 @@ for seed = seedVec
             graphicDetail = -1; %-1 is no graphics, 0 Is simple mode, 1 is advanced printout, 2 + is advanced printout with interpolation for graphicDetail interpolation steps.
             %set(gcf, 'Position', [50,50,1600,900])
             %citySize = 17; %MUST BE ODD APPARENTLY
-            nIndividuals = round((cityLength^2)*(4+1*rand));
-            spawnFunction = @(t) (cityLength)*(rand/4+1.5)*exp(-t/25);
+            nIndividuals = round((cityLength^2)*(3.8+1*rand));
+            spawnFunction = @(t) (cityLength)*(rand/4+1.4)*exp(-t/20);
             %awarenessType = 0; %I'm guessing this will be set once for the entire simulation.
             %---------------------------------------
 
@@ -52,11 +54,14 @@ for seed = seedVec
             %end
             %close(v);
             avgTravelTimeMultRuns(citySizeCount,awarenessType+1) = avgTravelTimeMultRuns(citySizeCount,awarenessType+1) + avgTravelTime;
+            if avgTravelTime == 0 %If the run got stuck.
+                normalizeMat(citySizeCount,awarenessType+1) = normalizeMat(citySizeCount,awarenessType+1) - 1;
+            end
         end
     end
 end
 
-avgTravelTimeMultRuns = avgTravelTimeMultRuns / length(seedVec);
+avgTravelTimeMultRuns = avgTravelTimeMultRuns ./ normalizeMat;
 
 for i = 1:length(citySizeVec)
     subplot(1,length(citySizeVec),i)
@@ -64,5 +69,5 @@ for i = 1:length(citySizeVec)
     xlabel('Awareness Type')
     ylabel("Average Travel Time")
     title("City size: " + num2str(citySizeVec(i)))
-    axis([0 4 50 100])
+    axis([0 4 40 150])
 end

@@ -15,6 +15,13 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
         awarenessTypeStr = "Best collective travel time. ";
     end
     while ~isempty(individuals)
+        stuck = 1;
+        for i = 1:length(individuals)
+            individual = individuals{i};
+            if individual.queueTime < 1
+                stuck = 0;
+            end
+        end
         spawnTime = spawnTime + 1;
         spawnRate = spawnFunction(spawnTime);
         spawnRate = floor(spawnRate) + (rand < (spawnRate-floor(spawnRate)));
@@ -22,6 +29,10 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
             [individuals{end+1},liveMap] = SpawnSingle(A, awarenessType, nodeList, globalEventQueue, citySize, liveMap, spawnTime);
         end
         batchTravelTime = zeros(1,length(individuals));
+        if stuck
+            individuals = [];
+            disp("A simulation got stuck. Skipping run.")
+        end
         %Used so that all cars look at the same time step regardeless of order in the list. Also good for parallellisation.
         illegalPoints = [0;0;0]; %In order to follow the queue, cars later in the queue are not allowed to drive where a car earlier in the queue wasn't, even though someone has made way in the middle of the time step.
         for i = 1:length(individuals) %Update all individuals
@@ -95,7 +106,10 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
                 individuals(i) = []; %Car is done and is removed from the list.
             end
         end
-        
+        if stuck
+            avgTravelTime = 0;
+            break
+        end
         avgTravelTime = avgTravelTime + sum(batchTravelTime);
         nCarsThisTimeStep = nnz(batchTravelTime);
         nCarsTraveled = nCarsTraveled + nCarsThisTimeStep;
@@ -137,8 +151,11 @@ function avgTravelTime = RunSim(individuals,A,v,graphicDetail,awarenessType,node
             prevCongest = UpdateView(individuals,A,v,graphicDetail,awarenessTypeStr,spawnTime, prevCongest);
         end
     end
-    avgTravelTime = avgTravelTime / nCarsTraveled;
+    if ~stuck
+        avgTravelTime = avgTravelTime / nCarsTraveled;
+        disp("The average travel time was: " + num2str(avgTravelTime))
+    end
     
-    disp("The average travel time was: " + num2str(avgTravelTime))
+    
     
 end
